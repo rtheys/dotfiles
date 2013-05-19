@@ -1,0 +1,25 @@
+startup_message off
+defscrollback 30000
+#hardstatus alwayslastline "%{= kY}${USER}@%H | %{= kY}%l %{= kY}%50=%c %{= kY}%=%n:%t"
+
+# detach on hangup
+autodetach on
+
+# set silencewait to 15 seconds, default 30
+silencewait 15
+
+# make a fancy statusline
+caption always " "                    # clear line before hardstatus
+#hardstatus alwayslastline "%{= kb}[ %{B}%H:$USER %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%?%= %{b}][%{B} %l %{B}%{W}%c %{b}]"
+hardstatus alwayslastline "%{= .b}[ %{B}%H:$USER %{b}][ %=%{w}%?%-Lw%?%{b}(%{W}%n*%f %t%?(%u)%?%{b})%{w}%?%+Lw%?%?%= %{b}][%{B} %l %{B}%{W}%c %{b}]"
+
+# make higlighting bold, blue on default background
+sorendition =b .b
+
+# to allow shift-page up etc
+termcapinfo xterm|xterms|sx|rxvt ti@:te@
+
+#shelltitle "$ |bash"
+
+# only show messages for 1 second if no other messages are waiting
+msgwait 1
