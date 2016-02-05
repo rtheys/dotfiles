@@ -14,6 +14,10 @@ set nocompatible        " Not compatible with vi (better, multi-level undo, ...)
 "colorscheme delek
 colorscheme wombat256mod
 "colorscheme oceanblack
+"colorscheme sahara
+
+" My background is dark
+set background=dark
 
 " Syntax Highlighting
 " -------------------
@@ -22,11 +26,13 @@ syntax on
 
 " Options
 " -------
-set t_Co=256" force 256 colors in terminal
+set t_Co=256		" force 256 colors in terminal
 "set nowrap		" don't wrap lines
 set cursorline		" show a line under the cursor
 set cursorcolumn	" show a vertical line where the cursor is
 hi CursorColumn ctermbg=236
+" Only show the cursorcolumn on lines where I cross it.
+"call matchadd('ColorColumn', '\%80v', 100)
 ""hi CursorLine ctermbg=233
 set visualbell          " No beeps
 set ruler               " Show the ruler at all times
@@ -36,7 +42,8 @@ set backspace=2         " Allow backspacing over everything in insert mode
 "set showmatch          " Show matching braces a la emacs
 set hlsearch            " Highlight search pattern
 set ignorecase          " Do case insensitive searches by default
-set autoindent
+filetype plugin indent on
+" set autoindent
 set number             " Show line numbers
 set history=500
 set laststatus=2
@@ -51,11 +58,15 @@ if version >=703
   hi ColorColumn ctermbg=233 guibg=lightblue
 endif
 
+" Set showbreak options, requires vim 7.4 with patchlevel >=338
+set breakindentopt=sbr
+set breakindent
+let &showbreak = '» '
+
 
 " Key mappings
 " ------------
 nnoremap <silent> <cr> :noh<cr>
-
 set pastetoggle=<F2>
 
 
@@ -84,4 +95,8 @@ set wildmode+=full		" when pressing tab a second time, full complete
 " To add a word to the NOT OK list: zw
 " This map command lets you toggle spelling on/off for the current buffer
 map <F5> :setlocal spell! spelllang=en_us <CR>
+
+" Make yy copy to the clipboard, only works if vim has xterm_clipboard support,
+" check with vim --version
+set clipboard=unnamedplus
 
